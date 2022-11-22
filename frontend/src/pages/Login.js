@@ -1,5 +1,10 @@
-import { useState, useEffect } from "react";
 import { FaSignInAlt } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { login, reset } from "../features/auth/authSlice";
+import { toast } from "react-toastify";
+import { Spinner } from "../components/Spinner";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -8,11 +13,37 @@ function Login() {
   });
 
   const { email, password } = formData;
-  console.log(formData);
+
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+  const { user, isLoading, isSuccess, isError, message } = useSelector(
+    (state) => state.auth
+  );
 
   const onSubmit = (e) => {
     e.preventDefault();
+
+    const userData = {
+      email,
+      password,
+    };
+
+    dispatch(login(userData));
   };
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess || user) {
+      navigate("/");
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -21,6 +52,10 @@ function Login() {
       [name]: value,
     }));
   };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>
@@ -32,7 +67,7 @@ function Login() {
       </section>
 
       <section className="form">
-        <form onSubmit={(e) => onSubmit(e)}>
+        <form onSubmit={onSubmit}>
           <div className="form-group">
             <input
               className="form-control"
@@ -41,7 +76,7 @@ function Login() {
               name="email"
               value={email}
               placeholder="enter your email"
-              onChange={(e) => onChange(e)}
+              onChange={onChange}
             ></input>
           </div>
           <div className="form-group">
@@ -52,7 +87,7 @@ function Login() {
               name="password"
               value={password}
               placeholder="enter your password"
-              onChange={(e) => onChange(e)}
+              onChange={onChange}
             ></input>
           </div>
 

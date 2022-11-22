@@ -1,3 +1,5 @@
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Dashboard } from "./pages/Dashboard";
 import { Login } from "./pages/Login";
@@ -11,12 +13,13 @@ function App() {
         <div className="container">
           <Header />
           <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="register" element={<Register />} />
+            <Route path="/" exact element={<Dashboard />} />
+            <Route path="/login" exact element={<Login />} />
+            <Route path="/register" exact element={<Register />} />
           </Routes>
         </div>
       </Router>
+      <ToastContainer />
     </>
   );
 }
