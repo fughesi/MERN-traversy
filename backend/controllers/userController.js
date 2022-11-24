@@ -8,7 +8,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (!name || !email || !password) {
     res.status(400);
-    throw new Error("please add all fields moron");
+    throw new Error("please add all fields");
   }
 
   const userExists = await User.findOne({ email });
@@ -58,9 +58,7 @@ const loginUser = asyncHandler(async (req, res) => {
 });
 
 const getMe = asyncHandler(async (req, res) => {
-  const { _id, name, email } = await User.findById(req.user.id);
-
-  res.status(200).json({ id: _id, name, email });
+  res.status(200).json(req.user);
 });
 
 const generateToken = (id) => {

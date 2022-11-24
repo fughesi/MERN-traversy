@@ -1,9 +1,10 @@
 import axios from "axios";
 
-const API_URL = "/api/users/";
+const userAPI = "http://localhost:5150/api/users/";
+// const userAPI = REACT_APP_USER;
 
 const register = async (userData) => {
-  const response = await axios.post(API_URL, userData);
+  const response = await axios.post(userAPI, userData);
 
   if (response.data) {
     localStorage.setItem("user", JSON.stringify(response.data));
@@ -13,7 +14,7 @@ const register = async (userData) => {
 };
 
 const login = async (userData) => {
-  const response = await axios.post(API_URL + "login", userData);
+  const response = await axios.post(userAPI + "login", userData);
 
   if (response.data) {
     localStorage.setItem("user", JSON.stringify(response.data));
