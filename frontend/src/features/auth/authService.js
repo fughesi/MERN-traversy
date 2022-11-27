@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const userAPI = "http://localhost:5150/api/users/";
-// const userAPI = REACT_APP_USER;
+const userAPI = process.env.REACT_APP_USER;
 
 const register = async (userData) => {
   const response = await axios.post(userAPI, userData);

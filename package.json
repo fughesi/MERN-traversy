@@ -1,7 +1,11 @@
 {
   "name": "mern-traversy",
   "version": "1.0.0",
+<<<<<<< HEAD
   "description": "Goal setter app {practice)",
+=======
+  "description": "Goal setter app (practice)",
+>>>>>>> 8c0c23c5f76bf7cc327b4945163c2b0de6487b80
   "main": "server.js",
   "scripts": {
     "start": "node backend/server.js",

@@ -1,4 +1,5 @@
 import { GoalForm } from "../components/GoalForm";
+import GoalItem from "../components/GoalItem";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -14,6 +15,7 @@ function Dashboard() {
 
   useEffect(() => {
     dispatch(getGoals());
+
     if (!user) {
       navigate("/login");
     }
@@ -27,15 +29,29 @@ function Dashboard() {
     return <Spinner />;
   }
 
+  // "proxy": "http://localhost:5150",
+  console.log(goals);
+
   return (
     <>
       <section className="heading">
         <h1>Welcome {user && user.name}</h1>
         <p>Goals Dashboard</p>
-        {JSON.stringify(goals)}
       </section>
 
       <GoalForm />
+
+      <section className="content">
+        {goals.length < 0 ? (
+          <div className="goals">
+            {goals.map((i) => {
+              <GoalItem key={i._id} goal={i} />;
+            })}
+          </div>
+        ) : (
+          <h3>You have not set any goals</h3>
+        )}
+      </section>
     </>
   );
 }

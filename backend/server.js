@@ -1,21 +1,16 @@
 const express = require("express");
-const dotenv = require("dotenv");
+const dotenv = require("dotenv").config();
 const cors = require("cors");
 const { errorHandler } = require("./middleware/errorMiddleware");
 const connectDB = require("./config/db");
-const port = process.env.PORT || 5150;
-
-dotenv.config();
 
 connectDB();
 
 const app = express();
 
+const port = process.env.PORT;
+
 app.use(cors());
-// app.use(cors, {
-//   origin: "http://localhost:3000",
-//   credentials: true,
-// });
 
 app.use(express.json());
 

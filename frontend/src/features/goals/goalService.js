@@ -1,9 +1,6 @@
 import axios from "axios";
 
-// const GoalsAPI = REACT_APP_GOALS;
-const GoalsAPI = "http://localhost:5150/api/goals/";
-
-// "proxy": "http://localhost:5150",
+const GoalsAPI = process.env.REACT_APP_GOALS;
 
 const createGoal = async (goalData, token) => {
   const config = {

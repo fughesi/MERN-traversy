@@ -5,7 +5,7 @@ const User = require("../models/userModel");
 
 const getGoals = asyncHandler(async (req, res) => {
   const goals = await Goal.find({ user: req.user.id });
-  res.status(200).json({ goals, name: req.user.name });
+  res.status(200).json({ goals });
 });
 
 const setGoal = asyncHandler(async (req, res) => {

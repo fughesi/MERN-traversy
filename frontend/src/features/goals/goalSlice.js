@@ -46,7 +46,7 @@ export const goalSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(createGoal.pending, (state) => {
-        // state.isLoading = true;
+        state.isLoading = true;
       })
       .addCase(createGoal.fulfilled, (state, action) => {
         state.isLoading = false;
