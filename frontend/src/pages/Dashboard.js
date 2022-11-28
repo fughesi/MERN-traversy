@@ -15,8 +15,6 @@ function Dashboard() {
     (state) => state.goals
   );
 
-  console.log(goals);
-
   if (isError) {
     console.log(message);
   }
@@ -24,14 +22,13 @@ function Dashboard() {
   if (!user) {
     navigate("/login");
   }
-
   useEffect(() => {
     dispatch(getGoals());
 
     return () => {
       dispatch(reset());
     };
-  }, []);
+  }, [dispatch]);
   //user, isError, message, dispatch, navigate
 
   if (isLoading) {
