@@ -22,17 +22,6 @@ function Login() {
     (state) => state.auth
   );
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-
-    const userData = {
-      email,
-      password,
-    };
-
-    dispatch(login(userData));
-  };
-
   useEffect(() => {
     if (isError) {
       toast.error(message);
@@ -51,6 +40,17 @@ function Login() {
       ...i,
       [name]: value,
     }));
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const userData = {
+      email,
+      password,
+    };
+
+    dispatch(login(userData));
   };
 
   if (isLoading) {

@@ -49,7 +49,8 @@ function Register() {
     }
 
     dispatch(reset());
-  }, [user, isError, isSuccess, message, navigate, dispatch]);
+  }, [isError, message, navigate, dispatch]);
+  //user,
 
   const onChange = (e) => {
     const { name, value } = e.target;

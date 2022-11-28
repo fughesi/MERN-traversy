@@ -5,7 +5,7 @@ const User = require("../models/userModel");
 
 const getGoals = asyncHandler(async (req, res) => {
   const goals = await Goal.find({ user: req.user.id });
-  res.status(200).json({ goals });
+  res.status(200).json(goals);
 });
 
 const setGoal = asyncHandler(async (req, res) => {
@@ -19,7 +19,7 @@ const setGoal = asyncHandler(async (req, res) => {
     user: req.user.id,
   });
 
-  res.status(200).json({ goal });
+  res.status(200).json(goal);
 });
 
 const updateGoal = asyncHandler(async (req, res) => {
@@ -48,6 +48,8 @@ const updateGoal = asyncHandler(async (req, res) => {
 });
 
 const deleteGoal = asyncHandler(async (req, res) => {
+  const goal = await Goal.findById(req.params.id);
+
   if (!goal) {
     res.status(400);
     throw new Error("no goal to delete!");

@@ -1,9 +1,10 @@
 import React from "react";
 
 function GoalItem({ goal }) {
+  console.log(goal);
   return (
     <div className="goal">
-      <div>{new Date(goal.createAt).toLocaleDateString("en-US")}</div>
+      <div>{new Date(goal.createdAt).toLocaleDateString("en-US")}</div>
       <h2>{goal.text}</h2>
     </div>
   );
